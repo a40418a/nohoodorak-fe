@@ -6,11 +6,15 @@
       "destination": "http://3.34.194.35:8080/api/:path*"
     },
     {
-      "source": "/auth/:path*",
-      "destination": "http://3.34.194.35:8080/auth/:path*"
+      "source": "/auth/refresh",
+      "destination": "http://3.34.194.35:8080/auth/refresh"
     },
     {
-      "source": "/((?!api|auth|assets|favicon\\.ico|robots\\.txt|manifest\\.json|service-worker\\.js).*)",
+      "source": "/auth/kakao/callback",
+      "destination": "http://3.34.194.35:8080/auth/kakao/callback"
+    },
+    {
+      "source": "/((?!api|auth/refresh|auth/kakao/callback|assets|favicon\\.ico|robots\\.txt|manifest\\.json|service-worker\\.js).*)",
       "destination": "/index.html"
     }
   ]
