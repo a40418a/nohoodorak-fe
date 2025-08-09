@@ -6,7 +6,11 @@
       "destination": "http://3.34.194.35:8080/api/:path*"
     },
     {
-      "source": "/((?!api|assets|favicon\\.ico|robots\\.txt|manifest\\.json|service-worker\\.js).*)",
+      "source": "/auth/:path*",
+      "destination": "http://3.34.194.35:8080/auth/:path*"
+    },
+    {
+      "source": "/((?!api|auth|assets|favicon\\.ico|robots\\.txt|manifest\\.json|service-worker\\.js).*)",
       "destination": "/index.html"
     }
   ]

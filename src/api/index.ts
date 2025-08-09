@@ -10,12 +10,9 @@ import router from '@/router';
  * 자동 JWT 토큰 첨부, 토큰 만료 시 자동 갱신, 인증 오류 처리 등을 담당합니다.
  */
 const instance = axios.create({
-  timeout: 30000, // 30초 타임아웃 (CODEF API 등 외부 API 호출 고려)
-  // Vite 프록시를 통해 /api 요청을 백엔드로 전달
-  // 개발환경에서는 Vite 프록시가 localhost:8080으로 포워딩
-  baseURL: import.meta.env.DEV ? '' : 'http://3.34.194.35:8080',
+  baseURL: '',
+  timeout: 30000,
 });
-
 /**
  * 요청 인터셉터
  *
@@ -70,12 +67,7 @@ instance.interceptors.response.use(
         }
 
         // 백엔드 토큰 재발급 API 호출
-        const { data } = await axios.post(
-          'http://3.34.194.35:8080/auth/refresh',
-          {
-            refreshToken: refreshToken,
-          }
-        );
+        const { data } = await instance.post('/auth/refresh', { refreshToken });
 
         // 새 Access Token 저장
         authStore.setToken(data.accessToken);
