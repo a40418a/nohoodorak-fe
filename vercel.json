@@ -1,5 +1,10 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://3.34.194.35:8080/api/$1"
+    },
     {
       "source": "/((?!assets/|favicon\\.ico|robots\\.txt|manifest\\.json|.*\\.(js|css|png|jpg|jpeg|webp|svg|ico|map)).*)",
       "destination": "/index.html"
