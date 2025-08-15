@@ -13,7 +13,13 @@
             :src="KakaoLoginBtn"
             alt="카카오 로그인"
             @click="() => authStore.startKakaoLogin()"
-            class="btn-pressed block max-h-20 w-auto"
+            class="btn-pressed block max-h-20 w-40"
+          />
+          <img
+            :src="NaverLoginBtn"
+            alt="네이버 로그인"
+            @click=""
+            class="btn-pressed block max-h-20 w-40"
           />
         </div>
       </div>
@@ -139,7 +145,8 @@ import Home3 from '@/assets/images/Home3.svg';
 import Home4 from '@/assets/images/Home4.svg';
 import Home5 from '@/assets/images/Home5.svg';
 import Home6 from '@/assets/images/Home6.svg';
-import KakaoLoginBtn from '@/assets/images/kakao_login_medium_wide.webp';
+import KakaoLoginBtn from '@/assets/images/KakaoLogin.png';
+import NaverLoginBtn from '@/assets/images/NaverLogin.png';
 
 // Kakao 지도 & 위치 유틸
 import {
