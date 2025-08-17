@@ -100,9 +100,7 @@ export const useAuthStore = defineStore('auth', () => {
     const kakaoClientId = import.meta.env.VITE_KAKAO_CLIENT_ID;
     const kakaoRedirectUri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
 
-    let kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}&redirect_uri=${encodeURIComponent(
-      kakaoRedirectUri
-    )}&response_type=code`;
+    let kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=3915e266f2340851e307cca982620137&redirect_uri=http://3.34.194.35:8080/auth/kakao/callback&response_type=code`;
 
     if (nextRouteName) {
       kakaoAuthUrl += `&state=${encodeURIComponent(nextRouteName)}`; // Using 'state' parameter to pass the next route
