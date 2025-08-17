@@ -13,7 +13,7 @@ const instance = axios.create({
   timeout: 30000, // 30초 타임아웃 (CODEF API 등 외부 API 호출 고려)
   // Vite 프록시를 통해 /api 요청을 백엔드로 전달
   // 개발환경에서는 Vite 프록시가 localhost:8080으로 포워딩
-  baseURL: '/api',
+  baseURL: '',
 });
 
 /**
