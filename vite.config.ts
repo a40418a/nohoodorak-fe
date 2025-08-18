@@ -43,6 +43,14 @@ export default defineConfig({
             configDir: path.join(dirname, '.storybook'),
           }),
         ],
+        build: {
+          minify: 'terser',
+          terserOptions: {
+            compress: {
+              drop_console: true, // console.log 제거
+            },
+          },
+        },
         test: {
           name: 'storybook',
           browser: {

@@ -64,7 +64,7 @@
           @click="handlers[card.onClick]"
         >
           <template #icon>
-            <img :src="card.src" class="h-16 w-16" />
+            <img :src="card.src" class="h-16 w-16" alt="아이콘" />
           </template>
         </IconCard>
       </div>
@@ -122,7 +122,7 @@
           :key="index"
           class="flex h-38 w-28 flex-col items-center justify-center"
         >
-          <img :src="feature.src" class="mb-2 h-16 w-16" />
+          <img :src="feature.src" class="mb-2 h-16 w-16" alt="아이콘" />
           <div class="flex flex-col items-center text-center">
             <div>
               <span class="text-secondary-300 font-semibold">{{

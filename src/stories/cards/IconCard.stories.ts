@@ -33,7 +33,7 @@ export const Default: Story = {
     template: `
       <IconCard v-bind="args">
         <template #icon>
-          <img :src="IconCheck" />
+          <img :src="IconCheck" alt="체크 아이콘" />
         </template>
       </IconCard>
     `,
