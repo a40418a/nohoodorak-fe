@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <div class="fixed inset-0 z-[9999] flex items-center justify-center">
       <!-- 투명 배경 -->
       <div class="bg-surface-300 absolute inset-0 opacity-40"></div>
 
