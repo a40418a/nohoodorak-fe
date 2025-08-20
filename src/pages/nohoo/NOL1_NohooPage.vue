@@ -45,14 +45,14 @@
           </template>
         </SelectBox>
 
-        <Btn
+        <!-- <Btn
           v-if="canFilter"
           size="square"
           label="필터"
           color="primary"
           class="max-h-10"
           @click="openFilter()"
-        />
+        /> -->
       </div>
 
       <!-- 검색 결과 없음 -->
