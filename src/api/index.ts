@@ -60,6 +60,11 @@ instance.interceptors.response.use(
   async (error) => {
     // 401 Unauthorized - 토큰 만료 또는 인증 실패
     if (error.response?.status === 401) {
+      if (error.config._retry) {
+        return Promise.reject(error);
+      }
+      error.config._retry = true;
+
       try {
         const authStore = useAuthStore();
         const refreshToken = authStore.state.refreshToken;
@@ -91,6 +96,7 @@ instance.interceptors.response.use(
         return instance.request(error.config);
       } catch {
         // Refresh Token도 만료되었거나 재발급 실패 시 로그아웃
+        alert('세션이 만료되었습니다. 다시 로그인해주세요.');
         const { logout } = useAuthStore();
         logout();
         router.push({ name: 'home' });
