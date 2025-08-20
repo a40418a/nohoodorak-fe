@@ -287,6 +287,7 @@ async function saveNewAsset() {
   resetValidationState();
 
   const missingFields = [];
+  const formatErrors = [];
 
   if (!newAsset.value.type) {
     validationErrors.value.type = true;
@@ -316,6 +317,7 @@ async function saveNewAsset() {
     }
     // 허용할 문자만 정의한 정규표현식 (한글, 영문, 숫자, 공백)
     const allowedCharsRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s]+$/;
+
     if (!allowedCharsRegex.test(newAsset.value.name)) {
       validationErrors.value.name = true;
       formatErrors.push(
@@ -325,6 +327,7 @@ async function saveNewAsset() {
   }
   // 에러 메시지 구성
   const errorMessages = [];
+
 
   if (missingFields.length > 0) {
     errorMessages.push(`다음 항목을 입력해주세요: ${missingFields.join(', ')}`);
