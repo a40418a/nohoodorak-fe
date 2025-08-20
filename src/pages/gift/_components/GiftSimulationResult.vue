@@ -212,7 +212,6 @@ const displayStrategies = computed(() => {
     }
     strategiesByCategory.get(strategy.ruleCategory)!.push(strategy);
   });
-
   strategiesByCategory.forEach((strategies, categoryName) => {
     result.push({
       isHeader: true,

@@ -27,9 +27,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://3.34.194.35:8080',
         changeOrigin: true,
-        secure: false,
       },
     },
   },
@@ -44,6 +43,14 @@ export default defineConfig({
             configDir: path.join(dirname, '.storybook'),
           }),
         ],
+        build: {
+          minify: 'terser',
+          terserOptions: {
+            compress: {
+              drop_console: true, // console.log 제거
+            },
+          },
+        },
         test: {
           name: 'storybook',
           browser: {

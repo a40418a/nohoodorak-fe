@@ -13,7 +13,7 @@ const instance = axios.create({
   timeout: 30000, // 30초 타임아웃 (CODEF API 등 외부 API 호출 고려)
   // Vite 프록시를 통해 /api 요청을 백엔드로 전달
   // 개발환경에서는 Vite 프록시가 localhost:8080으로 포워딩
-  baseURL: import.meta.env.DEV ? '' : 'http://localhost:8080',
+  baseURL: '',
 });
 
 /**
@@ -76,7 +76,8 @@ instance.interceptors.response.use(
 
         // 백엔드 토큰 재발급 API 호출
         const { data } = await axios.post(
-          'http://localhost:8080/auth/refresh',
+          '/api/auth/refresh', // 프록시 경유
+
           {
             refreshToken: refreshToken,
           }

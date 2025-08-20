@@ -16,7 +16,7 @@
     <div class="space-y-4 text-center">
       <!-- 에러 아이콘 GPT -->
       <div>
-        <img :src="Error" alt="Error Icon" class="mx-auto h-16 w-16" />
+        <img :src="Error" class="mx-auto h-16 w-16" alt="에러아이콘" />
       </div>
 
       <h1 class="text-surface-500 text-2xl font-bold">로그인 실패</h1>

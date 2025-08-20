@@ -84,6 +84,7 @@ const chartOptions = computed(() => ({
   },
   tooltip: {
     enabled: true,
+    zIndex: 1,
     x: {
       formatter: function (value: number) {
         const date = new Date(value);

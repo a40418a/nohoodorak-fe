@@ -4,7 +4,7 @@
     @click="onClick"
   >
     <!-- 아이콘 영역 -->
-    <img :src="src" class="h-auto w-full" />
+    <img :src="src" class="h-auto w-full" alt="이벤트 이미지" />
 
     <!-- 텍스트 -->
     <div class="flex flex-col">

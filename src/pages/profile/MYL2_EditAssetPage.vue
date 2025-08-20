@@ -315,7 +315,6 @@ async function saveNewAsset() {
       validationErrors.value.name = true;
       formatErrors.push('자산 이름은 20자 이하로 입력하세요');
     }
-
     // 허용할 문자만 정의한 정규표현식 (한글, 영문, 숫자, 공백)
     const allowedCharsRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s]+$/;
 
@@ -326,16 +325,16 @@ async function saveNewAsset() {
       );
     }
   }
-
   // 에러 메시지 구성
   const errorMessages = [];
+
+
   if (missingFields.length > 0) {
     errorMessages.push(`다음 항목을 입력해주세요: ${missingFields.join(', ')}`);
   }
   if (formatErrors.length > 0) {
     errorMessages.push(`다음 항목을 확인해주세요: ${formatErrors.join(', ')}`);
   }
-
   if (errorMessages.length > 0) {
     alertMessage.value = errorMessages.join('<br>');
     showAlert.value = true;
@@ -346,7 +345,6 @@ async function saveNewAsset() {
     ...newAsset.value,
     amount: Number(newAsset.value.amount),
   };
-
   loadingStore.startLoading();
   try {
     let successMessage = '';
