@@ -5,26 +5,21 @@
       <span v-if="explain" class="text-surface-300">{{ explain }}</span>
     </div>
 
-    <!-- 날짜 타입: 화면엔 포맷된 텍스트, 실제 변경은 숨겨진 date input -->
+    <!-- 날짜 타입: v-calendar 사용 -->
     <template v-if="type === 'date'">
-      <!-- 표시용 -->
-      <InputBox
-        :modelValue="formattedDisplay"
-        :placeholder="placeholder"
-        size="large"
-        type="text"
-        readonly
-        @focus="openNativePicker"
-        class="cursor-pointer"
-      />
-      <!-- 실제 값 변경용 (숨김) -->
-      <input
-        ref="nativeDate"
-        type="date"
-        class="sr-only"
-        :value="modelValue"
-        @change="onNativeChange"
-      />
+      <DatePicker v-model="dateValue" :masks="{ modelValue: 'YYYY-MM-DD' }" hide-time-header>
+        <template #default="{ togglePopover, inputValue }">
+          <InputBox
+            :modelValue="displayFormatter ? displayFormatter(inputValue) : inputValue"
+            :placeholder="placeholder"
+            size="large"
+            type="text"
+            readonly
+            @click="togglePopover"
+            class="cursor-pointer"
+          />
+        </template>
+      </DatePicker>
     </template>
 
     <!-- 나머지 타입 -->
@@ -42,42 +37,40 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import InputBox from '@/components/forms/InputBox.vue';
+import { DatePicker } from 'v-calendar';
+import 'v-calendar/style.css';
 
 const props = defineProps<{
   title: string;
   explain?: string;
-  modelValue: string; // 내부 값은 YYYY-MM-DD 유지
+  modelValue: string; // YYYY-MM-DD 형식
   type?: 'text' | 'password' | 'number' | 'date' | 'time';
   placeholder?: string;
   readOnly?: boolean;
-  displayFormatter?: (v: string) => string; // 화면 표시용 포맷터 (선택)
+  displayFormatter?: (v: string) => string;
 }>();
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: string): void;
 }>();
 
-const nativeDate = ref<HTMLInputElement | null>(null);
-
-const formattedDisplay = computed(() => {
-  // date 타입이면 포맷터 적용, 아니면 원본
-  if (props.type === 'date') {
-    return props.displayFormatter
-      ? props.displayFormatter(props.modelValue)
-      : props.modelValue;
-  }
-  return props.modelValue;
+// v-calendar가 Date 객체를 사용하므로, YYYY-MM-DD 문자열과 변환
+const dateValue = computed({
+  get() {
+    // modelValue가 유효한 YYYY-MM-DD 형식일 때만 Date 객체로 변환
+    return props.modelValue && props.modelValue.match(/^\d{4}-\d{2}-\d{2}$/)
+      ? new Date(props.modelValue)
+      : null; // 형식이 아니면 null
+  },
+  set(val) {
+    if (val instanceof Date) {
+      const year = val.getFullYear();
+      const month = (val.getMonth() + 1).toString().padStart(2, '0');
+      const day = val.getDate().toString().padStart(2, '0');
+      emit('update:modelValue', `${year}-${month}-${day}`);
+    }
+  },
 });
-
-function openNativePicker() {
-  nativeDate.value?.showPicker?.(); // 지원 브라우저
-  nativeDate.value?.click(); // 폴백
-}
-
-function onNativeChange(e: Event) {
-  const v = (e.target as HTMLInputElement).value; // YYYY-MM-DD
-  emit('update:modelValue', v);
-}
 </script>
