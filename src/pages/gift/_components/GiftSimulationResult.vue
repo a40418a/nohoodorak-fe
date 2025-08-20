@@ -225,6 +225,7 @@ const displayStrategies = computed(() => {
       });
     });
   });
+
   return result;
 });
 

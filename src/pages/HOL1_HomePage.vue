@@ -14,6 +14,7 @@
             alt="카카오 로그인"
             @click="() => authStore.startKakaoLogin()"
             class="btn-pressed block object-contain"
+
             style="height: 40px; width: 180px"
           />
           <img
@@ -21,6 +22,7 @@
             alt="네이버 로그인"
             @click="showNaverAlert"
             class="btn-pressed block object-contain"
+
             style="height: 40px; width: 180px"
           />
         </div>

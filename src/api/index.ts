@@ -77,6 +77,7 @@ instance.interceptors.response.use(
         // 백엔드 토큰 재발급 API 호출
         const { data } = await axios.post(
           '/api/auth/refresh', // 프록시 경유
+
           {
             refreshToken: refreshToken,
           }
