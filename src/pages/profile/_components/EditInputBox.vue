@@ -14,7 +14,7 @@
         size="large"
         type="text"
         readonly
-        @focus="openNativePicker"
+        @click="openNativePicker"
         class="cursor-pointer"
       />
       <!-- 실제 값 변경용 (숨김) -->

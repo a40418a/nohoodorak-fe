@@ -1,12 +1,12 @@
 <template>
   <Teleport to="body">
-    <div class="fixed inset-0 z-50 flex items-center justify-center">
+    <div class="fixed inset-0 flex items-center justify-center">
       <!-- 투명 배경 -->
-      <div class="bg-surface-300 absolute inset-0 opacity-40"></div>
+      <div class="fixed inset-0 z-40 bg-black opacity-40"></div>
 
       <!-- 모달 박스 -->
       <div
-        class="card-design relative z-10 max-h-[80vh] overflow-y-auto py-8"
+        class="card-design relative z-50 max-h-[80vh] overflow-y-auto py-8"
         role="dialog"
         aria-modal="true"
       >
